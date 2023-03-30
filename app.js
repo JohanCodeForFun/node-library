@@ -3,13 +3,15 @@ const morgan = require('morgan')
 const mongoose = require('mongoose');
 const bookRoutes = require('./routes/bookRoutes');
 
+// load .env
+require('dotenv').config()
+
 // express app
 const app = express();
 
 // connect to mongodb
-const dbURI = 'mongodb+srv://database-practice:LearningMERN2023@cluster0.nl10569.mongodb.net/library-db?retryWrites=true&w=majority';
-mongoose.connect(dbURI)
-	.then((result) => app.listen(3004))
+mongoose.connect(process.env.MONGO_dbURI)
+	.then((result) => app.listen(3000))
 	.catch((err) => console.log(err));
 
 // Register view engine
